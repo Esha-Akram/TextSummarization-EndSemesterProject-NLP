@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.css') }}">
+	<!-- themify-icon -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='plugins/themify-icons/themify-icons.css') }}">
+	<!--Favicon-->
+	<link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/x-icon">
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Main Stylesheet -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+	<!-- header -->
+	<header class="banner overlay bg-cover" style="background-image: url({{ url_for('static', filename='images/Image.jpg') }});">
+       <!-- banner -->
+		<nav class="navbar navbar-expand-md navbar-dark">
+			<div class="container">
+				<a class="navbar-brand px-2" href="{{ url_for('home') }}">Summarizer</a>
+				<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+					aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse text-center" id="navigation">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link text-dark" href="{{ url_for('home') }}">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" href="{{ url_for('compare') }}">Faq</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" href="{{ url_for('about') }}">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	<!-- /banner -->
+		<div class="container section">
+			<div class="row">
+				<div class="col-lg-8 text-center mx-auto">
+					<h1 class="text-white mb-5">Text Summarization</h1>
+					<p class="text-white mb-5">Use Text Summarizer to quickly provide summarized data</p>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- /header -->
+    <!-- SUMMARIZATION -->
+	<section class="section">
+	 <div class="container2">
+<!--        <h1>Text Summarizer</h1>-->
+		 <form action="{{ url_for('summarize') }}" method="post">
+        <div class="input-section">
+            <textarea id="input-text" name="input_text" placeholder="Enter or paste your text here"></textarea>
+            <div class="counter">
+                <span id="char-count">0</span> characters
+            </div>
+        </div>
+        <div class="options-section">
+            <label for="summary-length">Summary Length:</label>
+            <input type="range" id="summary-length" name="summary_length" min="10" max="100" step="10" value="50">
+            <span id="range-value">50%</span>
+        </div>
+        <button type="submit" id="summarize-btn">Summarize</button>
+		 </form>
+        <div id="loading-spinner" class="hide">
+            <div class="spinner"></div>
+            <div class="loading-text">Summarizing...</div>
+        </div>
+        <div id="output-section" class="hide">
+            <h2>Original Text</h2>
+            <div id="original-text" class="text-content"></div>
+            <h2>Summary</h2>
+			<div class="" role="alert">
+              <p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
+            </div>
+            <div id="summary-text" class="text-content"> {{summary}} </div>
+            <button id="copy-btn">Copy Summary</button>
+        </div>
+    </div>
+	</section>
+	<!-- topics -->
+	<section class="section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-12 text-center">
+					<h2 class="section-title">How can Text Summarizer helps you</h2>
+				</div>
+				<!-- topic-item -->
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<p class="px-4 py-5 bg-white shadow text-center d-block match-height mb-0">
+						<i class="ti-panel icon d-block mb-4"></i>
+<!--						<h3 class="mb-3 mt-0">Installation</h3>-->
+						Quickly detect negative comments & respond instantly</p>
+				</div>
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<p class="mb-0 px-4 py-5 bg-white shadow text-center d-block match-height">
+						<i class="ti-credit-card icon d-block mb-4"></i>
+<!--						<h3 class="mb-3 mt-0">Billing &amp; Pricing</h3>-->
+					Learn the topics your clients are most happy or unhappy about.</p>
+				</div>
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<p class="px-4 py-5 bg-white shadow text-center d-block match-height mb-0">
+						<i class="ti-package icon d-block mb-4"></i>
+<!--						<h3 class="mb-3 mt-0">Features</h3>-->
+						Monitor sentiment about your brand, product, or service in real time</p>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--	 /topics -->
+
+	<section>
+		<div class="container">
+				<div class="row">
+						<div class="col-12">
+								<div class="section px-3 bg-white shadow text-center">
+										<h2 class="mb-4">How can you use it?</h2>
+										<p class="mb-4">Simple Just upload the data, and we will take care of the rest.</p>
+								</div>
+						</div>
+				</div>
+		</div>
+	</section>
+
+    <!-- footer -->
+	<footer class="section pb-4">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-8 text-md-left text-center">
+					<p class="mb-md-0 mb-4">Copyright © 2020 Designed and Developed by
+						<a href="#">Esha Akram</a>
+					</p>
+				</div>
+				<div class="col-md-4 text-md-right text-center">
+					<ul class="list-inline">
+						<li class="list-inline-item">
+							<a class="text-color d-inline-block p-2" href="#">
+								<i class="ti-facebook"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a class="text-color d-inline-block p-2" href="#">
+								<i class="ti-twitter-alt"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a class="text-color d-inline-block p-2" href="#">
+								<i class="ti-instagram"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a class="text-color d-inline-block p-2" href="#">
+								<i class="ti-google"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	 </footer>
+	<!-- jQuery -->
+	<script src="{{ url_for('static', filename='plugins/jquery/jquery-1.12.4.js') }}"></script>
+	<!-- Bootstrap -->
+	<script src="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.js') }}"></script>
+	<!-- Main Script -->
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
